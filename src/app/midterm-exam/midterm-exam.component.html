@@ -1,0 +1,38 @@
+
+<br><br>
+
+
+<input type="text" [(ngModel)]="search" name="" id=""> 
+
+<select name="opt" id="opt" #mySelect
+(change)='onOptionsSelected(mySelect.value)'>
+    <option value="0">ID</option>
+    <option value="1">Name</option>
+    <option value="2">Username</option>
+    <option value="3">Email</option>
+    <option value="4">Company Name</option>  
+</select>
+
+<button (click)="searchdata()">Search</button>
+<button (click)="browse()">Refresh</button>
+
+<br><br>
+<table border="1">
+    <tr>
+      <th>ID<button class="fa fa-fw fa-sort" (click)="sort()"></button></th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Company Name</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of this.Users; let i = index">
+      <td *ngIf="item['id'] != undefined">{{item['id']}}</td>
+      <td *ngIf="item['name'] != undefined">{{item['name']}}</td>
+      <td *ngIf="item['username'] != undefined">{{item['username']}}</td>
+      <td *ngIf="item['email'] != undefined">{{item['email']}}</td>
+      <td *ngIf="item['company']['name'] != undefined">{{item['company']['name']}}</td>
+      <td *ngIf="item['id'] != undefined"><button (click)="remove(i)" class="btn btn-danger">Remove</button></td>
+    </tr> 
+  </table>
+  
